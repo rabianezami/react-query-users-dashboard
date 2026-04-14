@@ -5,7 +5,9 @@ import Toolbaar from "./components/Toolbar"
 import { fetchUsers } from "./api/users"
 import QueryInfo from "./components/QueryInfo"
 import UserCard from "./components/UserCard"
+import LoadingState from "./components/LoadingState"
 import ErrorState from "./components/ErrorState"
+
 
 
 
@@ -41,6 +43,7 @@ function App() {
     )
   }
 
+  if (isLoading) return <LoadingState />
   if (isError) return <ErrorState message={error.message} onRetry={refetch} />
 
   return (
