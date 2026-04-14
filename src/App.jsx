@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import Header from "./components/Header"
 import Toolbaar from "./components/Toolbar"
@@ -14,7 +14,14 @@ import ErrorState from "./components/ErrorState"
 function App() {
 
   const [search, setSearch] = useState("")
-  const [selectedIds, setSelectedIds] = useState([])
+  const [selectedIds, setSelectedIds] = useState(() => {
+    const saved = localStorage.getItem("selectedIds")
+    return saved ? JSON.parse(saved) : [] 
+  })
+
+  useEffect(() => {
+    localStorage.setItem("selectedIds", JSON.stringify(selectedIds))
+  }, [selectedIds])
 
   const { data = [], isLoading, isError, error, isFetching, refetch } = useQuery({
     queryKey: ['users'],
