@@ -5,6 +5,7 @@ import Toolbaar from "./components/Toolbar"
 import { fetchUsers } from "./api/users"
 import QueryInfo from "./components/QueryInfo"
 import UserCard from "./components/UserCard"
+import ErrorState from "./components/ErrorState"
 
 
 
@@ -40,6 +41,7 @@ function App() {
     )
   }
 
+  if (isError) return <ErrorState message={error.message} onRetry={refetch} />
 
   return (
     <main className="min-h-screen bg-gradient-t0-br from-slate-100 via-white to-sky-100 px-4 py-10 text-slate-900">
