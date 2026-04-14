@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query"
 import Header from "./components/Header"
 import Toolbaar from "./components/Toolbar"
 import { fetchUsers } from "./api/users"
+import QueryInfo from "./components/QueryInfo"
 
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
           onRefrech={refetch}
           isFetching={isFetching}
         />
+
+        <QueryInfo />
       </div>
     </main>
   )
